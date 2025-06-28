@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jio Recharge</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e3f2fd;
+      text-align: center;
+      padding: 40px;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      width: 300px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    h2 {
+      color: #0b62cc;
+    }
+    input, select, button {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #0b62cc;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #084a9c;
+    }
+    .result {
+      margin-top: 15px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>🔵 Jio Recharge</h2>
+    
+    <input type="text" id="mobile" placeholder="Enter Jio Number">
+    
+    <select id="plan">
+      <option value="349">₹349 – 2GB/day for 28 days</option>
+    </select>
+    
+    <button onclick="recharge()">Recharge Now</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function recharge() {
+      const mobile = document.getElementById('mobile').value.trim();
+      const plan = document.getElementById('plan').value;
+      const resultDiv = document.getElementById('result');
+
+      const eligibleNumber = "7455076291"; // ← change this to your selected eligible number
+
+      if (mobile.length !== 10 || isNaN(mobile)) {
+        resultDiv.style.color = 'red';
+        resultDiv.textContent = '❌ Enter a valid 10-digit number.';
+        return;
+      }
+
+      if (!plan) {
+        resultDiv.style.color = 'red';
+        resultDiv.textContent = '❌ Please select a plan.';
+        return;
+      }
+
+      if (mobile === eligibleNumber) {
+        resultDiv.style.color = 'green';
+        resultDiv.textContent = `✅ Recharge of ₹${plan} successful for ${mobile}!`;
+      } else {
+        resultDiv.style.color = 'red';
+        resultDiv.textContent = '❌ You are not eligible for this offer.';
+      }
+    }
+  </script>
+
+</body>
+</html>
